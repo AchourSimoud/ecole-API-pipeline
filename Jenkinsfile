@@ -28,6 +28,7 @@ pipeline{
     post{
         always {
             junit 'newman-report.xml'
+            archiveArtifacts artifacts: 'newman-report.xml'
         }
     }
 }
