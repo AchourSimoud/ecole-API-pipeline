@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "59126d13-11b9-4499-873f-734fd303995a",
+		"name": "Inscription credentiels correct",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39706519"
+	},
+	"item": [
+		{
+			"name": "inscription",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"user_name\",pm.variables.replaceIn(\"{{$randomFirstName}}\"))",
+							"pm.collectionVariables.set(\"email\",pm.variables.replaceIn(\"{{$randomEmail}}\"))",
+							"pm.collectionVariables.set(\"password\",pm.variables.replaceIn(\"{{$randomPassword}}\"))",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verfication du code de la requete\", function(){",
+							"    pm.expect(pm.response.code).to.be.eqls(201);",
+							"",
+							"})",
+							"",
+							"pm.test(\"Verfication des données retournées par la requete\", function(){",
+							"    let resp = pm.response.json();",
+							"    let body = JSON.parse(pm.request.body.raw);",
+							"    pm.expect(resp.username).to.be.eqls(body.username);",
+							"    pm.expect(resp.email).to.be.eqls(body.email);",
+							"    pm.expect(resp.job).to.be.eqls(body.job);",
+							"    pm.expect(resp.about_me).to.be.eqls(body.about_me);",
+							"",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{user_name}}\",\n    \"email\": \"{{email}}\",\n    \"password1\": \"{{password}}\",\n    \"password2\": \"{{password}}\",\n    \"job\": \"\",\n    \"about_me\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/register/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "user_name",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		}
+	]
+}

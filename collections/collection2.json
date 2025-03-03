@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "7d9924c6-71c6-4a10-acb8-c0fac56abbfa",
+		"name": "Recuperation des posts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39706519"
+	},
+	"item": [
+		{
+			"name": "recuperer les posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"verfi des posts\", function() {",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"    pm.response.json().forEach((post) => {",
+							"     pm.expect(post).to.have.property('id');",
+							"     pm.expect(post).to.have.property('comments');",
+							"     pm.expect(post).to.have.property('title');",
+							"     pm.expect(post).to.have.property('content');",
+							"     pm.expect(post).to.have.property('created_at');",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"verfi que le postes sont complet\", function() {",
+							"    let resp = pm.response.json();",
+							"    let is_present = false;",
+							"    let title = null;",
+							"    let content = null;",
+							"",
+							"    for(post of resp){",
+							"        if (post.id === pm.variables.get(\"id\")){",
+							"            is_present = true;",
+							"            title = post.title;",
+							"            content = post.content;",
+							"            break;",
+							"        }",
+							"    } ",
+							"    pm.expect(is_present, \"verfier que le poste est bien recuperé\").to.be.true;",
+							"    pm.expect(title, \"verfier que le titre du poste est correcte\").to.be.eql(pm.variables.get(\"title\"));",
+							"    pm.expect(content, \"verfier que le contenu du poste est correcte\").to.be.eql(pm.variables.get(\"content\"));",
+							"",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
