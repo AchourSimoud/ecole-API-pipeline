@@ -7,6 +7,12 @@ pipeline{
         
     }
 
+
+    parameters {
+        choice(name: 'COLLECTION', choices: ['collection1', 'collection2', 'collection3'], description: 'choisir une collection')
+
+    }
+
     stages{
         stage('verifier la version de newman'){
             steps{
@@ -15,7 +21,7 @@ pipeline{
         }
         stage('Test API'){
             steps{
-                sh 'newman run collections/collection1.json -r cli,junit --reporter-junit-export="newman-report.xml"'
+                sh 'newman run collections/${params.COLLECTION}.json -r cli,junit --reporter-junit-export="newman-report.xml" -e env.json'
             }
         }
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="inserer un comment cas positif" tests="3" time="0.723">
+  <testsuite name="inscription" id="b357c0f8-91b4-48cb-963f-2454618d3b22" timestamp="2025-03-03T15:11:23.620Z" tests="2" failures="0" errors="0" time="0.458">
+    <testcase name="Verfication du code de la requete" time="0.458" classname="Inscription"/>
+    <testcase name="Verfication des données retournées par la requete" time="0.458" classname="Inscription"/>
+  </testsuite>
+  <testsuite name="login positif" id="ba5351ba-25d9-4924-9413-be1141d853fe" timestamp="2025-03-03T15:11:23.620Z" tests="1" failures="0" errors="0" time="0.232">
+    <testcase name="login avec les coordonées créées" time="0.232" classname="LoginPositif"/>
+  </testsuite>
+  <testsuite name="ecrire un commentaire" id="6e3c9a4f-7995-4718-a8b7-0e4d246a82b5" timestamp="2025-03-03T15:11:23.620Z" tests="1" failures="0" errors="0" time="0.033">
+    <testcase name="Verifier que le commentaire est bien ajouté" time="0.033" classname="EcrireUnCommentaire"/>
+  </testsuite>
+</testsuites>
