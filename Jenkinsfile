@@ -21,7 +21,7 @@ pipeline{
         }
         stage('Test API'){
             steps{
-                sh 'newman run collections/${params.COLLECTION}.json -r cli,junit --reporter-junit-export="newman-report.xml" -e env.json'
+                sh 'newman run collections/collection1.json -r cli,junit --reporter-junit-export="newman-report.xml" -e env.json'
             }
         }
     }
